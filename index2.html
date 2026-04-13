@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 70%;
+      padding: 8px;
+    }
+    button {
+      padding: 8px;
+      margin-left: 5px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    li {
+      background: #f1f1f1;
+      margin: 5px 0;
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 5px;
+    }
+    .delete {
+      background: red;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>📝 To-Do List</h2>
+  <input type="text" id="taskInput" placeholder="Enter task">
+  <button onclick="addTask()">Add</button>
+
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value.trim();
+
+    if (task === "") {
+      alert("Please enter a task!");
+      return;
+    }
+
+    let li = document.createElement("li");
+    li.textContent = task;
+
+    let delBtn = document.createElement("button");
+    delBtn.textContent = "X";
+    delBtn.className = "delete";
+    delBtn.onclick = function () {
+      li.remove();
+    };
+
+    li.appendChild(delBtn);
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+  }
+</script>
+
+</body>
+</html>
